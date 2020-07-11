@@ -6,35 +6,38 @@ class Gear{
 	private int chainring;
 	private int cog;
 	private int rim;
-	private double tire;
+	private Wheel w;
 	private double ratio;
 
 	Gear(int chainring, int cog){
 		this.chainring = chainring;
 		this.cog = cog;
+		this.w = null;
 	}
-
-	Gear(int chainring, int cog, int rim, double tire){
+	
+	Gear(int chainring, int cog, Wheel w){
 		this(chainring, cog);
-		this.rim = rim;
-		this.tire = tire;
+		this.w = w;
 	}
 
-	double calculateRatio(){
+
+	double getGearInches(){
 		ratio = ((double)chainring)/cog;
-		return ratio;
+		return ratio * w.getDiameter();
 	}
-
-	double calculateGearInches(){
-		return ratio*(rim + tire * 2);
-	}
+	
 
 	public static void main(String args[]){
-		Gear g1=  new Gear(52, 11, 24, 1.5);
-		Gear g2 = new Gear(30, 27);
-		System.out.println(g1.calculateRatio());
-		System.out.println(g2.calculateRatio());
-		System.out.println(g1.calculateGearInches());
+		Wheel w = new Wheel(24, 1.5);
+		Gear g1=  new Gear(52, 11, w);
+		Gear g2 = new Gear(30, 27, w);
+		
+		System.out.println(w.getDiameter());
+		System.out.println(w.getCircumference());
+		System.out.println(g1.getGearInches());
+		// System.out.println(g1.calculateRatio());
+		// System.out.println(g2.calculateRatio());
+		// System.out.println(g1.calculateGearInches());
 	}
 
 }
