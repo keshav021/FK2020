@@ -8,22 +8,25 @@ class Gear{
 	private int rim;
 	private Wheel w;
 	private double ratio;
+	private double diameter;
 
 	Gear(int chainring, int cog){
 		this.chainring = chainring;
 		this.cog = cog;
 		this.w = null;
+		this.diameter = 0;
 	}
 	
 	Gear(int chainring, int cog, Wheel w){
 		this(chainring, cog);
 		this.w = w;
+		this.diameter = this.w.getDiameter();
 	}
 
 
 	double getGearInches(){
 		ratio = ((double)chainring)/cog;
-		return ratio * w.getDiameter();
+		return ratio * diameter;
 	}
 	
 
